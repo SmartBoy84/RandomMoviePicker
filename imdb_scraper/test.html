@@ -1,0 +1,31 @@
+<html>
+
+<body>
+    <button id="get">
+        YO!
+    </button>
+</body>
+
+<script>
+    const testObj = {
+        release_date: [ [ '2005', '5', '22' ], [] ]
+    }
+    const backend_url = "/api"
+
+    async function postRequest() {
+        const response = await fetch(backend_url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(testObj)
+        })
+        return await response.json()
+    }
+
+    document.getElementById("get").addEventListener("click", async () => {
+        console.log(await postRequest())
+    })
+</script>
+
+</html>

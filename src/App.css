@@ -1,0 +1,467 @@
+@font-face {
+    font-family: 'Bubble';
+    src: local('Bubble'), url(./external/chibold.ttf) format('truetype');
+}
+
+/* color scheme: external/color_scheme.png*/
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #29007C;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+#root {
+    display: flex;
+    /* oh my god, I love flex boxes */
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+    /*#FLEX-BOXES ROCK!*/
+}
+
+#loading {
+    height: 73vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vh;
+    font-family: bubble;
+}
+
+.child_element {
+    border-width: 0.7vh;
+    border-color: black;
+    border-style: solid;
+    border-radius: 3vh;
+    /*both header, option and progress children should be flex centred */
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+}
+
+.content {
+    max-height: 100%;
+    padding: 1.5vh;
+    /*this is to make content in header, body and final result section look neater */
+}
+
+.parent {
+    height: 73vh;
+    margin-top: 1vh;
+}
+
+/* questionnaire */
+
+#question {
+    width: 50vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#header {
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+    background-color: #FF0066;
+    transition: 0.3s;
+    color: white;
+    -webkit-text-stroke: 0.3vh black;
+}
+
+#header:hover {
+    background-color: #d40055;
+}
+
+/* Button animation */
+
+#anim {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 18%;
+}
+
+@keyframes press {
+    0% {
+        height: 100%;
+    }
+    50% {
+        height: 0%;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+.anim_press {
+    animation: press 0.4s forwards;
+}
+
+/* End Button Animation why did I think this was a good idea??? */
+
+#header>div {
+    max-height: 100%;
+    cursor: default;
+    /*prevent any accidental overflow */
+    overflow: hidden;
+    font-family: Bubble;
+    text-align: center;
+    font-size: 4.7vh;
+}
+
+#progress {
+    height: 2.5%;
+    border-radius: 0;
+    display: flex;
+    /* flex in flex??? Woah, man*/
+}
+
+#step_finished {
+    width: 0%;
+    /* this is the property I'll change to indicate how much of the questionnaire the user's progressed through, width = {`${100*step/total steps}%`*/
+    background-color: #33CC33;
+}
+
+#step_unfinished {
+    flex-grow: 1;
+    /* unfinished section */
+    background-color: #E6E6E6;
+}
+
+#body {
+    flex-grow: 1;
+    display: flex;
+    /* fill the rest of the body */
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+    background-color: #9900CC;
+}
+
+/* ------- */
+
+#details {
+    background-color: #18ADE2;
+}
+
+#title {
+    text-align: center;
+    font-family: Bubble;
+    font-size: 10vh;
+    color: #F2C607;
+    -webkit-text-stroke: 0.29vh black;
+    text-shadow: -0.5vw 0.7vh 0.1vh #000000;
+}
+
+/* Start of stage styling */
+
+.button {
+    padding: 0;
+    margin: 0;
+    cursor: default;
+    width: 9.5vh;
+    height: 9.5vh;
+    font-size: 7.5vh;
+    text-align: center;
+    border-radius: 2vh;
+    border: 0.8vh solid black;
+    font-family: cursive;
+    background-color: #18ADE2;
+}
+
+.button:hover {
+    background-color: #38b7e6;
+    cursor: default;
+}
+
+.step_1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5.5vh;
+    border-radius: 4vh;
+    text-align: center;
+    height: 35%;
+    width: 80%;
+}
+
+.step_2 {
+    text-align: center;
+    font-size: 3vh;
+    padding: 3vh;
+    font-family: cursive;
+    margin-bottom: 5vh;
+}
+
+.step_2>div {
+    margin-top: 3vh;
+}
+
+.step_3 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1vh;
+}
+
+.button_container {
+    display: flex;
+}
+
+.button_container>div {
+    margin-left: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button_container>div:first-child {
+    margin-left: 0vh;
+}
+
+.rating_description {
+    padding: 2vh;
+    background-color: #18ADE2;
+    flex-grow: 1;
+    margin-top: 1vh;
+    border: 0.8vh solid black;
+    border-radius: 2vh;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    font-size: 1.6vh;
+    font-family: cursive;
+}
+
+.rating_description>div {
+    display: flex;
+    align-content: center;
+}
+
+.rating_description>div>div:first-child {
+    display: flex;
+    align-items: center;
+    margin-right: 1.5vh;
+}
+
+.rating_description>div>div:last-child {
+    display: flex;
+    height: 7vh;
+}
+
+.rating_description>div>div>img {
+    width: 8vh;
+    height: 8vh;
+}
+
+.genres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+    margin: 1vh;
+}
+
+.genres>div {
+    width: 29%;
+    font-size: 2.8vh;
+    height: 9%;
+    border-radius: 1vh;
+    border-width: 0.5vh;
+    display: flex;
+    align-content: center;
+}
+
+.companies {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    height: 100%;
+    width: 100%;
+    margin: 2vh;
+    gap: 0.8vh;
+}
+
+.companies>div {
+    width: 28%;
+    height: 28%;
+    border-radius: 1vh;
+    border-width: 0.7vh;
+}
+
+.companies>div>img {
+    width: 90%;
+    height: 90%;
+}
+
+.country {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    margin: 1.5vh;
+    justify-content: space-evenly;
+    align-content: space-around;
+}
+
+.search_bar {
+    width: 100%;
+    height: 12%;
+    border: 0.7vh solid black;
+    border-radius: 1.4vh;
+    background-color: #F2C607;
+    display: flex;
+    text-align: center;
+    font-size: 3.5vh;
+    font-family: cursive;
+    outline: none;
+}
+
+.countries {
+    background-color: white;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    border-radius: 1.5vh;
+    border: 0.7vh solid black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+    justify-content: center;
+    align-content: flex-start;
+    row-gap: 1vh;
+    gap: 1vh;
+    height: 75%;
+}
+
+.countries>div {
+    overflow: hidden;
+    width: 28%;
+    height: 10%;
+    font-size: 1.7vh;
+    border: 0.5vh solid black;
+    border-radius: 1vh;
+}
+
+.date {
+    width: 85%;
+    height: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.date>p {
+    font-size: 2vh;
+    font-family: cursive;
+    height: 10%;
+    width: 100%;
+    text-align: center;
+}
+
+.date_container {
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
+    margin-bottom: 3vh;
+}
+
+.date_container>input {
+    height: 100%;
+    width: 100%;
+    height: 25%;
+    border-radius: 2vh;
+    border: 0.7vh solid black;
+    font-size: 5vh;
+    text-align: center;
+    background-color: #F2C607;
+    font-family: cursive;
+    outline: none;
+}
+
+.to {
+    text-align: center;
+    font-family: bubble;
+    font-size: 10vh;
+    width: 100%;
+    color: white;
+    -webkit-text-stroke: 0.5vh black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+#results {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 80%;
+    max-height: 82%;
+    background-color: white;
+    padding: 1.5vh;
+    border: 0.7vh solid black;
+    border-radius: 3vh;
+}
+
+#results>div {
+    font-family: cursive;
+    font-size: 2vh;
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 0.3vh solid black;
+    padding-bottom: 0.5vh;
+    margin-bottom: 0.5vh;
+    overflow: hidden;
+}
+
+#results>.summary {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    gap: 0vh;
+    border: none;
+    flex-grow: 1;
+    height: 0%;
+}
+
+.summary>div {
+    font-size: 1.4vh;
+    overflow: scroll;
+    text-align: center;
+}
