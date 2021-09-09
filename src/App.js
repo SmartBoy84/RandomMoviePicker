@@ -59,7 +59,9 @@ function App() {
     changeScreen(1)
     let movie
 
-    console.log(choices)
+    console.log(choices.release_date)
+    if (choices.release_date && choices.release_date.length > 2) choices.release_date = [choices.release_date, []]
+
     //my epic randomizer
     let argument = Object.keys(choices).reduce((a, c) =>
       !(choices[c][0] == void 0 || (choices[c][0] == "object" && choices[c][0][0] == void 0 || choices[c][0][1] == void 0)) ? { ...a, ...{ [c]: choices[c] } } /* this is a check to see if the user has inputted a value */
