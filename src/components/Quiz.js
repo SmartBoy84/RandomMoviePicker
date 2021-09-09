@@ -145,10 +145,9 @@ const Quiz = ({ change, getMovie }) => {
             )
         ],
         [ //this is just a template
-            () => changeData([new Date().toJSON().slice(0, 10).split("-"), []])/* initialize */,
-            () => stageData.filter((a) => !(a.length == 0 || a.length == 3)).length == 0
-                , /* check - this allows me to force user to fill out certain parameters */
-            () => change({ "release_date": stageData }), /* store */
+            () => changeData([new Date().toJSON().slice(0, 10), ""])/* initialize */,
+            () => stageData.filter((a) => !(a.split("-").length == 0 || a.split("-").length == 3)).length == 0, /* check - this allows me to force user to fill out certain parameters */
+            () => change({ "release_date": [stageData[1].split("-"), stageData[0].split("-")] }), /* store */
             "Release date range",
             () => (
                 <div className="date">
@@ -156,16 +155,14 @@ const Quiz = ({ change, getMovie }) => {
                     <div className="date_container">
                         <input type="date" name="start"
                             min="1910-01-01" max={new Date().toJSON().slice(0, 10)}
-                            onChange={e => changeData([e.target.value.split("-"), stageData[1]])}
-                            value={stageData[0].join("-")}
+                            onChange={e => changeData([e.target.value, stageData[1]])}
                         />
 
                         <div className="to">To</div>
 
                         <input type="date" name="start"
-                            min={"1910-01-01"} max={stageData[0]}
-                            onChange={e => changeData([stageData[0], e.target.value.split("-")])}
-                            value={stageData[1].join("-")}
+                            min={changeData[0]} max={stageData[0]}
+                            onChange={e => changeData([stageData[0], e.target.value])}
                         />
                     </div>
                 </div>
