@@ -163,7 +163,7 @@ const Quiz = ({ change, getMovie }) => {
                         <div className="to">To</div>
 
                         <input type="date" name="start"
-                            min={changeData[0]} max={stageData[0]}
+                            min={"1910-01-01"} max={stageData[0]}
                             onChange={e => changeData([stageData[0], e.target.value.split("-")])}
                             value={stageData[1].join("-")}
                         />
