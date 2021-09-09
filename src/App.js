@@ -10,6 +10,8 @@ import Results from "./components/Results"
 import { timeout } from 'q';
 
 function App() {
+//what's my name
+
   var choices = { "genres": [], "companies": [], "countries": [], "certificates": [], "colors": [], "release_date": [[], []] } //An empty array so that the API can know when ones to randomize
 
   const returnRandom = (values) => [values[Math.floor(Math.random() * (values.length))]]
