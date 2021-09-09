@@ -137,7 +137,7 @@ const Quiz = ({ change, getMovie }) => {
                     <input className="search_bar" type="text" placeholder="Type in a country" onInput={e => changeData([stageData[0], Object.keys(stageData[0]).filter(c => c.toLowerCase().includes(e.target.value.toLowerCase()))])} />
                     <div className="countries">
                         {stageData[1].map((element, i) =>
-                            <div key={i} onClick={() => changeData([{...stageData[0], ...{[element]: !stageData[element]}}, stageData[1]])} style={{ backgroundColor: stageData[0][element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
+                            <div key={i} onClick={() => changeData([{...stageData[0], ...{[element]: !stageData[0][element]}}, stageData[1]])} style={{ backgroundColor: stageData[0][element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
                                 {element}
                             </div>)}
                     </div>
