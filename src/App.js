@@ -1,5 +1,6 @@
 //Pledge before I begin this monster project: I won't be using any other react/css framework or any 3rd party component/module
 //Prediction: I'll probably scrap it mid-way and make a glorified calculator instead
+//Huh, would ya look at that?
 
 import { useState, useEffect } from 'react';
 import loading from "./external/reload-cat.gif"
