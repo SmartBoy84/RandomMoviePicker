@@ -135,19 +135,3 @@ const scrape = async (link) => {
 app.post('/api', async (req, res) => res.send(await scrape(await parameters.generateParameters(req.body)))) //right back at ya
 app.get("/api", (req, res) => res.send(parameters))
 app.get("/", (req, res) => res.sendFile(path.join(__dirname, "./test.html")))
-
-/*movie information:
-Release date
-Duration
-Poster
-Rating
-Synonpsis
-Top cast
-Trailer
-User rating
-
-Refresh button
-Confetti
-
-randomize release date, ratings etc
-*/
