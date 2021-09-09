@@ -14,7 +14,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "website": "concurrently \"npm start\" \"node imdb_scraper/scraper.js\"",
+    "website": "sudo concurrently \"sudo npm start\" \"sudo node imdb_scraper/scraper.js\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
