@@ -10,6 +10,8 @@ import Results from "./components/Results"
 import { timeout } from 'q';
 
 function App() {
+  //what's my name
+
   var choices = { "genres": [], "companies": [], "countries": [], "certificates": [], "colors": [], "release_date": [[], []] } //An empty array so that the API can know when ones to randomize
 
   const returnRandom = (values) => [values[Math.floor(Math.random() * (values.length))]]
@@ -39,17 +41,24 @@ function App() {
 
   const addChoice = (choice) => {
     //todo: randomize the choices
-    if (Object.keys(choices).includes(Object.keys(choice)[0])) choices = { ...choices, ...choice }
+    if (Object.keys(choices).includes(Object.keys(choice)[0])) {
+      let choiceName = Object.keys(choice)[0]
+
+      if (choice[choiceName].length > 0) {
+        choice = { [choiceName]: choice[choiceName][Math.floor(Math.random() * choice[choiceName].length)] }
+        choices = { ...choices, ...choice }
+      }
+    }
     else console.log("That's not a choice? You ok?")
   }
 
   const getMovie = async () => {
     console.log("Randomizing...")
 
-
     changeScreen(1)
     let movie
 
+    console.log(choices)
     //my epic randomizer
     let argument = Object.keys(choices).reduce((a, c) =>
       !(choices[c][0] == void 0 || (choices[c][0] == "object" && choices[c][0][0] == void 0 || choices[c][0][1] == void 0)) ? { ...a, ...{ [c]: choices[c] } } /* this is a check to see if the user has inputted a value */
@@ -89,7 +98,7 @@ function App() {
               <div id="loading"><img src={loading} /></div>
               : <Results movie={currentMovie} goBack={() => changeScreen(0)} />}
         </>
-        : <p style={{fontSize:"3vh", color: "white", fontFamily: "cursive", textAlign: "center"}}>Uh oh, the backend isn't online - if you have the project files then start the backend (stored in [root_folder]/imdb_scraper) and reload this page, if you don't know what this means then ask me (Hamdan)</p>}
+        : <p style={{ fontSize: "3vh", color: "white", fontFamily: "cursive", textAlign: "center" }}>Uh oh, the backend isn't online - if you have the project files then start the backend (stored in [root_folder]/imdb_scraper) and reload this page, if you don't know what this means then ask me (Hamdan)</p>}
     </>
   )
 }

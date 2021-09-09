@@ -45,6 +45,7 @@ const Quiz = ({ change, getMovie }) => {
             "How this works",
             () => (<>
                 <div className="step_2">
+                    <div style={{color: "white"}}>*You can now choose more than one choice for each section</div>
                     <div>You'll be asked a few question, answering these questions will imapct the type of movies randomly picked.</div>
                     <div>You can leave questions unanswered and proceed by pressing the header.</div>
                     <div>Also no back button because I'm lazy</div>
@@ -61,7 +62,7 @@ const Quiz = ({ change, getMovie }) => {
                 <div className="step_3">
                     <div className="button_container">
                         {Object.keys(stageData).map((element, i) =>
-                            <div className="step_3_button button" key={i} onClick={() => changeData(Object.keys(stageData).reduce((a, c) => { return {...a, ...{[c]: c == element} } }, {}) )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }}>{element}</div>
+                            <div className="step_3_button button" key={i} onClick={() => changeData( {...stageData, ...{[element]: !stageData[element]}} )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }}>{element}</div>
                         )}
                     </div>
 
@@ -111,7 +112,7 @@ const Quiz = ({ change, getMovie }) => {
             () => change({ "genres": Object.keys(stageData).filter(choice => stageData[choice]) }), /* store */
             "What do you feel like?",
             () => (<div className="genres">
-                {Object.keys(stageData).map((element, i) => <div key={i} onClick={() => changeData( Object.keys(stageData).reduce((a, c) => { return {...a, ...{[c]: c == element} } }, {}) )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">{element}</div>)}
+                {Object.keys(stageData).map((element, i) => <div key={i} onClick={() => changeData( {...stageData, ...{[element]: !stageData[element]}} )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">{element}</div>)}
             </div>)
         ],
         [ //this is just a template
@@ -121,7 +122,7 @@ const Quiz = ({ change, getMovie }) => {
             "By which film company?",
             () => (<div className="companies">
                 {Object.keys(stageData).map((element, i) =>
-                    <div key={i} onClick={() => changeData(Object.keys(stageData).reduce((a, c) => { return {...a, ...{[c]: c == element} } }, {}) )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
+                    <div key={i} onClick={() => changeData({...stageData, ...{[element]: !stageData[element]}} )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
                         <img src={logos[element]} />
                     </div>)}
             </div>)
@@ -136,7 +137,7 @@ const Quiz = ({ change, getMovie }) => {
                     <input className="search_bar" type="text" placeholder="Type in a country" onInput={e => changeData([stageData[0], Object.keys(stageData[0]).filter(c => c.toLowerCase().includes(e.target.value.toLowerCase()))])} />
                     <div className="countries">
                         {stageData[1].map((element, i) =>
-                            <div key={i} onClick={() => changeData([ Object.keys(stageData[0]).reduce((a, c) => { return {...a, ...{[c]: c == element} } }, {}), stageData[1]])} style={{ backgroundColor: stageData[0][element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
+                            <div key={i} onClick={() => changeData([{...stageData[0], ...{[element]: !stageData[element]}}, stageData[1]])} style={{ backgroundColor: stageData[0][element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
                                 {element}
                             </div>)}
                     </div>
