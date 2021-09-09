@@ -45,6 +45,7 @@ const Quiz = ({ change, getMovie }) => {
             "How this works",
             () => (<>
                 <div className="step_2">
+                    <div style={{color: "white"}}>*You can now choose more than one choice for each section</div>
                     <div>You'll be asked a few question, answering these questions will imapct the type of movies randomly picked.</div>
                     <div>You can leave questions unanswered and proceed by pressing the header.</div>
                     <div>Also no back button because I'm lazy</div>
