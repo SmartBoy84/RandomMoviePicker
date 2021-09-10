@@ -144,33 +144,24 @@ const Quiz = ({ change, getMovie }) => {
             )
         ],
         [ //this is just a template
-            () => changeData([new Date().toJSON().slice(0, 10), ""])/* initialize */,
-            () => stageData.filter((a) => {
-                if (a == "" || a.split("-").length == 0 || a.split("-").length == 3) {
-                    return false
-                }
-                else {
-                    console.log(a)
-                    console.log(`HEY ${a}`)
-                    return true
-                }
-            }).length == 0, /* check - this allows me to force user to fill out certain parameters */
-            () => change({ "release_date": [stageData[1].split("-"), stageData[0].split("-")] }), /* store */
+            () => changeData([[], []])/* initialize */,
+            () => stageData.filter((a) => !(a == "" || a.length == 0 || a.length == 3)).length == 0, /* check - this allows me to force user to fill out certain parameters */
+            () => change({ "release_date": stageData }), /* store */
             "Release date range",
             () => (
                 <div className="date">
-                    <p>*Your choice here can have a massive impact on whether any movies are found. First is latest and second is earliest.</p>
+                   <p> First is earliest [{'<'}] (min is 1910) and second is latest [{'>'}] (max is today) <span style={{color: "white"}}> <br></br>*this is only if one entry is filled, otherwise it's just a range</span></p>
                     <div className="date_container">
                         <input type="date" name="start"
                             min="1910-01-01" max={new Date().toJSON().slice(0, 10)}
-                            onChange={e => changeData([e.target.value, stageData[1]])}
+                            onChange={e => changeData([e.target.value.split("-"), stageData[1]])}
                         />
 
                         <div className="to">To</div>
 
                         <input type="date" name="start"
-                            min={changeData[0]} max={stageData[0]}
-                            onChange={e => changeData([stageData[0], e.target.value])}
+                            min="1910-01-01" max={new Date().toJSON().slice(0, 10)}
+                            onChange={e => changeData([stageData[0], e.target.value.split("-")])}
                         />
                     </div>
                 </div>
