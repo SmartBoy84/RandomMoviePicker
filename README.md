@@ -5,3 +5,5 @@ Then in the root dir, run "npm run website" and once it compiles syou should be 
 
 Allow user to manually set how many results they want (default is 100 - one page)
 Automatically scale the max results to page number, calculate how many pages there are.
+
+When user has selected more than one option, loop through the options (removing an option each time) until I get a result from the backend
