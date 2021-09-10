@@ -47,10 +47,7 @@ function App() {
     if (Object.keys(choices).includes(Object.keys(choice)[0])) {
       let choiceName = Object.keys(choice)[0]
 
-      if (choice[choiceName].length > 0 && choiceName != "release_date") {
-        choice = { [choiceName]: choice[choiceName][Math.floor(Math.random() * choice[choiceName].length)] }
-      }
-
+      if (choice[choiceName].length > 0 && choiceName != "release_date") choice = { [choiceName]: [choice[choiceName][Math.floor(Math.random() * choice[choiceName].length)]] } //pick a random choice
       choices = { ...choices, ...choice }
     }
     else console.log("That's not a choice? You ok?")
@@ -62,14 +59,9 @@ function App() {
     changeScreen(1)
     let movie
 
-    if (choices.release_date && choices.release_date.length > 2) choices.release_date = [choices.release_date, []]
-
     //my epic randomizer
-    let argument = Object.keys(choices).reduce((a, c) =>
-      !(choices[c][0] == void 0) ? { ...a, ...{ [c]: choices[c] } } /* this is a check to see if the user has inputted a value */
-        : (Object.keys(randomize).includes(c)) ? { ...a, ...{ [c]: randomize[c]() } }
-          : a
-      , {})
+    if (choices.release_date && choices.release_date.length > 2) choices.release_date = [choices.release_date, []]
+    let argument = Object.keys(choices).reduce((a, c) => ({ ...a, ...{ [c]: (choices[c][0] == void 0 && Object.keys(randomize).includes(c)) ? randomize[c]() : choices[c] } }), {})
 
     console.log(argument)
 
@@ -104,7 +96,7 @@ function App() {
               <div id="loading"><img src={loading} /></div>
               : <Results movie={currentMovie} goBack={() => changeScreen(0)} />}
         </>
-        : <p style={{ fontSize: "3vh", color: "white", fontFamily: "cursive", textAlign: "center" }}>Uh oh, the backend isn't online - if you have the project files then start the backend (stored in [root_folder]/imdb_scraper) and reload this page, if you don't know what this means then ask me (Hamdan)</p>}
+        : <p style={{ fontSize: "3vh", color: "white", fontFamily: "cursive", textAlign: "center" }}>Uh oh, the backend isn't online - if you have the project files then ensure the backend exists (stored in [root_folder]/imdb_scraper) and/or restart the website (ctrl + c and "npm run website") and reload this page, if you don't know what this means then ask me (Hamdan)</p>}
     </>
   )
 }
