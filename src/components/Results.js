@@ -65,7 +65,7 @@ const Results = ({ movie, goBack }) => {
                             <div>Director: <a href={`https://www.imdb.com/name/${Object.values(finalMovie.director)[0]}/`}>{Object.keys(finalMovie.director)[0]}</a></div>
                             <div>Star(s): <div style={{ textAlign: "right", fontSize: "1.4vh" }}>{Object.keys(finalMovie.stars).map(star => <a id={Math.random() * 10000 /* why am I doing this?? */} href={`https://www.imdb.com/name/${finalMovie.stars[star]}/`}>{star}, </a>)}</div></div>
 
-                            <div className="summary">Summary: <div>{finalMovie.summary}</div></div>
+                            <div className="summary">Summary (scroll): <div>{finalMovie.summary}</div></div>
                         </>
                     }
                 </div>
