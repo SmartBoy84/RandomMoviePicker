@@ -45,7 +45,7 @@ const Quiz = ({ change, getMovie }) => {
             "How this works",
             () => (<>
                 <div className="step_2">
-                    <div style={{color: "white"}}>*You can now choose more than one choice for each section</div>
+                    <div style={{ color: "white" }}>*You can now choose more than one choice for each section</div>
                     <div>You'll be asked a few question, answering these questions will imapct the type of movies randomly picked.</div>
                     <div>You can leave questions unanswered and proceed by pressing the header.</div>
                     <div>Also no back button because I'm lazy. Press the button to move on.</div>
@@ -61,7 +61,7 @@ const Quiz = ({ change, getMovie }) => {
                 <div className="step_3">
                     <div className="button_container">
                         {Object.keys(stageData).map((element, i) =>
-                            <div className="step_3_button button" key={i} onClick={() => changeData( {...stageData, ...{[element]: !stageData[element]}} )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }}>{element}</div>
+                            <div className="step_3_button button" key={i} onClick={() => changeData({ ...stageData, ...{ [element]: !stageData[element] } })} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }}>{element}</div>
                         )}
                     </div>
 
@@ -111,7 +111,7 @@ const Quiz = ({ change, getMovie }) => {
             () => change({ "genres": Object.keys(stageData).filter(choice => stageData[choice]) }), /* store */
             "What do you feel like?",
             () => (<div className="genres">
-                {Object.keys(stageData).map((element, i) => <div key={i} onClick={() => changeData( {...stageData, ...{[element]: !stageData[element]}} )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">{element}</div>)}
+                {Object.keys(stageData).map((element, i) => <div key={i} onClick={() => changeData({ ...stageData, ...{ [element]: !stageData[element] } })} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">{element}</div>)}
             </div>)
         ],
         [ //this is just a template
@@ -121,7 +121,7 @@ const Quiz = ({ change, getMovie }) => {
             "By which film company?",
             () => (<div className="companies">
                 {Object.keys(stageData).map((element, i) =>
-                    <div key={i} onClick={() => changeData({...stageData, ...{[element]: !stageData[element]}} )} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
+                    <div key={i} onClick={() => changeData({ ...stageData, ...{ [element]: !stageData[element] } })} style={{ backgroundColor: stageData[element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
                         <img src={logos[element]} />
                     </div>)}
             </div>)
@@ -136,7 +136,7 @@ const Quiz = ({ change, getMovie }) => {
                     <input className="search_bar" type="text" placeholder="Type in a country" onInput={e => changeData([stageData[0], Object.keys(stageData[0]).filter(c => c.toLowerCase().includes(e.target.value.toLowerCase()))])} />
                     <div className="countries">
                         {stageData[1].map((element, i) =>
-                            <div key={i} onClick={() => changeData([{...stageData[0], ...{[element]: !stageData[0][element]}}, stageData[1]])} style={{ backgroundColor: stageData[0][element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
+                            <div key={i} onClick={() => changeData([{ ...stageData[0], ...{ [element]: !stageData[0][element] } }, stageData[1]])} style={{ backgroundColor: stageData[0][element] ? "#33CC33" : "#18ADE2" }} className="step_1 button">
                                 {element}
                             </div>)}
                     </div>
@@ -145,12 +145,21 @@ const Quiz = ({ change, getMovie }) => {
         ],
         [ //this is just a template
             () => changeData([new Date().toJSON().slice(0, 10), ""])/* initialize */,
-            () => stageData.filter((a) => !(a.split("-").length == 0 || a.split("-").length == 3)).length == 0, /* check - this allows me to force user to fill out certain parameters */
+            () => stageData.filter((a) => {
+                if (a == "" || a.split("-").length == 0 || a.split("-").length == 3) {
+                    return false
+                }
+                else {
+                    console.log(a)
+                    console.log(`HEY ${a}`)
+                    return true
+                }
+            }).length == 0, /* check - this allows me to force user to fill out certain parameters */
             () => change({ "release_date": [stageData[1].split("-"), stageData[0].split("-")] }), /* store */
             "Release date range",
             () => (
                 <div className="date">
-                    <p>*Your choice here can have a massive impact on whether any movies are found, try to keep the first one as recent as possible (or just leave it blank)</p>
+                    <p>*Your choice here can have a massive impact on whether any movies are found. First is latest and second is earliest.</p>
                     <div className="date_container">
                         <input type="date" name="start"
                             min="1910-01-01" max={new Date().toJSON().slice(0, 10)}
@@ -184,7 +193,7 @@ const Quiz = ({ change, getMovie }) => {
     const press = () => {
         stages[step][2]() //run the parsing and storing function
 
-        if ((step == 0 && stageData[0] == true) || step == stages.length-1) getMovie() //relay the choice back to the main app
+        if ((step == 0 && stageData[0] == true) || step == stages.length - 1) getMovie() //relay the choice back to the main app
         else {
             stages[step + 1][0]() // initialize the next one
             console.log(stageData)

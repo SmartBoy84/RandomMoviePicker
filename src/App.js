@@ -69,6 +69,8 @@ function App() {
           : a
       , {})
 
+      console.log(argument)
+
     let newMovie = await fetch("/api", {
       method: "POST",
       headers: {
