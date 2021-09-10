@@ -36,6 +36,7 @@ function App() {
   const [currentMovie, changeMovie] = useState(false)
 
   useEffect(() => {
+    console.log(`${currentMovie == false}`)
     currentMovie != false && changeScreen(2)
   }
     , [currentMovie])
@@ -69,6 +70,8 @@ function App() {
           : a
       , {})
 
+    console.log(argument)
+
     let newMovie = await fetch("/api", {
       method: "POST",
       headers: {
@@ -85,8 +88,7 @@ function App() {
       console.log(newMovie)
       movie = newMovie[2]
 
-      let finalMovie = movie[Math.floor(Math.random() * movie.length)]
-      changeMovie(finalMovie)
+      changeMovie(movie != false ? movie : void 0)
     }
   }
 
