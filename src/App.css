@@ -380,6 +380,7 @@ a {
     flex-direction: row;
     justify-content: start;
     flex-wrap: wrap;
+    gap: 6vh;
 }
 
 .date>p {
@@ -435,6 +436,7 @@ a {
     padding: 1.5vh;
     border: 0.7vh solid black;
     border-radius: 3vh;
+    height: 100%;
 }
 
 #results>div {

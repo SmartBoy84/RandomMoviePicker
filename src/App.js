@@ -42,14 +42,16 @@ function App() {
     , [currentMovie])
 
   const addChoice = (choice) => {
-    //todo: randomize the choices
+    console.log(choice)
+
     if (Object.keys(choices).includes(Object.keys(choice)[0])) {
       let choiceName = Object.keys(choice)[0]
 
-      if (choice[choiceName].length > 0) {
+      if (choice[choiceName].length > 0 && choiceName != "release_date") {
         choice = { [choiceName]: choice[choiceName][Math.floor(Math.random() * choice[choiceName].length)] }
-        choices = { ...choices, ...choice }
       }
+
+      choices = { ...choices, ...choice }
     }
     else console.log("That's not a choice? You ok?")
   }
@@ -60,12 +62,11 @@ function App() {
     changeScreen(1)
     let movie
 
-    console.log(choices.release_date)
     if (choices.release_date && choices.release_date.length > 2) choices.release_date = [choices.release_date, []]
 
     //my epic randomizer
     let argument = Object.keys(choices).reduce((a, c) =>
-      !(choices[c][0] == void 0 || (choices[c][0] == "object" && choices[c][0][0] == void 0 || choices[c][0][1] == void 0)) ? { ...a, ...{ [c]: choices[c] } } /* this is a check to see if the user has inputted a value */
+      !(choices[c][0] == void 0) ? { ...a, ...{ [c]: choices[c] } } /* this is a check to see if the user has inputted a value */
         : (Object.keys(randomize).includes(c)) ? { ...a, ...{ [c]: randomize[c]() } }
           : a
       , {})
@@ -88,7 +89,7 @@ function App() {
       console.log(newMovie)
       movie = newMovie[2]
 
-      changeMovie(movie != false ? movie : void 0)
+      changeMovie(movie != false || movie.length != 0 ? movie : void 0)
     }
   }
 

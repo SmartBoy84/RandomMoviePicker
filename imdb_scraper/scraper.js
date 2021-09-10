@@ -43,10 +43,10 @@ const parameters = {
     "run_time": new string(void 0, (para) => (para.length == 1 || para.length == 2) && para.filter((c) => isNaN(c)).length == 0 ? para.join(",") : void 0),
     "release_date": new string(void 0, (para) => { //ugh, ibdb is so finicky about release dates
         let today = new Date()
-        today = [today.getFullYear(), today.getMonth() + 1, today.getDate()]
+        //    today = [today.getFullYear(), today.getMonth() + 1, today.getDate()]
 
-        //we need a full date in there else ibdm does funky things
-        para[1] = para[1].length < 3 ? [...para[1], ...today.slice(para[1].length)] /*I'm so smart*/ : para[1]
+        //     //we need a full date in there else ibdm does funky things
+        //     para[1] = para[1].length < 3 ? [...para[1], ...today.slice(para[1].length)] /*I'm so smart*/ : para[1]
 
         return para.length > 0 && para.length <= 2 //this check is pretty much redundant but eh...
             && para.filter((c) =>
@@ -124,7 +124,7 @@ const scrape = async (link) => {
 
             "summary": $(element).children("p.text-muted").last().text().replace("\n", ""),
 
-            "director": {[movieDirector.text()]: movieDirector.attr("href") && movieDirector.attr("href").split("/")[2]},
+            "director": { [movieDirector.text()]: movieDirector.attr("href") && movieDirector.attr("href").split("/")[2] },
             "stars": actors
         })
     })
