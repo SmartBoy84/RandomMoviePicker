@@ -150,7 +150,7 @@ const Quiz = ({ change, getMovie }) => {
             "Release date range",
             () => (
                 <div className="date">
-                   <p> First is earliest [{'<'}] (min is 1910) and second is latest [{'>'}] (max is today) <span style={{color: "white"}}> <br></br>*this is only if one entry is filled, otherwise it's just a range</span></p>
+                   <p> First is earliest [{'>'}] and second is latest [{'<'}] (min should be 1910 and max is today) <span style={{color: "white"}}> <br></br>*If both entries inputted, it becomes a range</span></p>
                     <div className="date_container">
                         <input type="date" name="start"
                             min="1910-01-01" max={new Date().toJSON().slice(0, 10)}
