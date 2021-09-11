@@ -33,7 +33,7 @@ const Quiz = ({ change, getMovie }) => {
             () => void 0, /* store */
             "How do you want to do this?",
             () => (<>
-                <div style={{ fontSize: "2.5vh", padding: "0", margin: "0", fontFamily: "cursive", color: "white" }}>Press the red button ^ to submit!</div>
+                <div style={{ fontSize: "2.5vh", padding: "0", margin: "0", fontFamily: "cursive", color: "white" }}>Press the red button ^ to submit<br></br><span>There are over <b style={{textDecoration:"underline"}}>465,000</b> movies!</span></div>
                 <div onClick={() => changeData([!stageData[0], false])} style={{ backgroundColor: stageData[0] ? "#33CC33" : "#18ADE2" }} className="step_1 button">Randomize all parameters</div>
                 <div onClick={() => changeData([false, !stageData[1]])} style={{ backgroundColor: stageData[1] ? "#33CC33" : "#18ADE2" }} className="step_1 button">Set some parameters</div>
             </>)
