@@ -89,7 +89,7 @@ a {
 }
 
 #header:hover {
-    background-color: #d40055;
+    filter: brightness(85%);
 }
 
 /* Button animation */
