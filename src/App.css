@@ -83,7 +83,7 @@ a {
     border-bottom-right-radius: 0;
     border-bottom: none;
     background-color: #FF0066;
-    transition: 0.3s;
+    transition: filter 0.3s;
     color: white;
     -webkit-text-stroke: 0.3vh black;
 }
